@@ -14,7 +14,6 @@ export const projects: Project[] = [
       "AI-powered security scanner for vibe-coded websites. Non-technical founders paste a URL and receive a plain-English security report with a letter grade, prioritized findings, and copy-paste fix prompts tailored to their AI tool. Built with Next.js 14, TypeScript, Supabase, Stripe, and Claude API.",
     image: "/vibesafe.jpg",
     liveUrl: "https://www.vibe-safe.net/",
-    sourceUrl: "https://github.com/Zocum/vibesafe",
   },
   {
     title: "Induction Furnace",

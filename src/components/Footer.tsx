@@ -4,7 +4,7 @@ const socials = [
   { icon: Twitter, href: "https://twitter.com/de_codinglife", label: "Twitter" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/hector-jc/", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/Zocum", label: "GitHub" },
-  { icon: Youtube, href: "https://www.youtube.com/channel/UCQzQRYnaYL_ZDt5S8CKAIPg", label: "YouTube" },
+  { icon: Youtube, href: "https://www.youtube.com/@learningOnDemand-y1m", label: "YouTube" },
 ];
 
 export default function Footer() {
