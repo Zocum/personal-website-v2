@@ -75,14 +75,15 @@ export default function Hero() {
             Hector Jimenez Cruz
           </span>
         </h1>
-        <p className="mt-4 text-xl text-gray-400 sm:text-2xl">
-          I'm the developer you need.
+        <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-400 sm:text-2xl">
+          I build things that work &mdash; from power electronics and firmware
+          to production web apps.
         </p>
         <a
           href="#about"
           className="mt-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)] px-8 py-3 text-sm font-medium text-[var(--color-primary)] transition-all hover:bg-[var(--color-primary)] hover:text-white"
         >
-          Who am I? <ChevronDown size={16} />
+          What I do <ChevronDown size={16} />
         </a>
       </motion.div>
     </section>
