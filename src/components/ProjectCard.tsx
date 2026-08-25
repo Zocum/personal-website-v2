@@ -1,13 +1,20 @@
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import VanillaTilt from "vanilla-tilt";
-import { ExternalLink, Github, Video } from "lucide-react";
-import type { Project } from "../data/projects";
+import { ExternalLink, FileText, Github, Video } from "lucide-react";
+import type { LinkKind, Project } from "../data/projects";
 
 interface Props {
   project: Project;
   index: number;
 }
+
+const icons: Record<LinkKind, typeof Video> = {
+  live: ExternalLink,
+  source: Github,
+  video: Video,
+  guide: FileText,
+};
 
 export default function ProjectCard({ project, index }: Props) {
   const tiltRef = useRef<HTMLDivElement>(null);
@@ -44,42 +51,49 @@ export default function ProjectCard({ project, index }: Props) {
         </div>
 
         <div className="p-6">
-          <h3 className="text-xl font-bold text-white">{project.title}</h3>
+          <div className="flex flex-wrap items-center gap-3">
+            <h3 className="text-xl font-bold text-white">{project.title}</h3>
+            {project.status && (
+              <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-amber-400">
+                {project.status}
+              </span>
+            )}
+          </div>
+
           <p className="mt-3 text-sm leading-relaxed text-gray-400">
             {project.description}
           </p>
 
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-full bg-gray-800/80 px-3 py-1 text-[11px] font-medium text-gray-400"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+
           <div className="mt-5 flex flex-wrap gap-3">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-primary)] px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-[var(--color-primary-light)]"
-              >
-                <ExternalLink size={14} /> Live
-              </a>
-            )}
-            {project.sourceUrl && (
-              <a
-                href={project.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-gray-700 px-4 py-2 text-xs font-medium text-gray-300 transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
-              >
-                <Github size={14} /> Source
-              </a>
-            )}
-            {project.videoUrl && (
-              <a
-                href={project.videoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-gray-700 px-4 py-2 text-xs font-medium text-gray-300 transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
-              >
-                <Video size={14} /> Video
-              </a>
-            )}
+            {project.links.map(({ kind, label, url }) => {
+              const Icon = icons[kind];
+              return (
+                <a
+                  key={url}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={
+                    kind === "live"
+                      ? "inline-flex items-center gap-1.5 rounded-full bg-[var(--color-primary)] px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-[var(--color-primary-light)]"
+                      : "inline-flex items-center gap-1.5 rounded-full border border-gray-700 px-4 py-2 text-xs font-medium text-gray-300 transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                  }
+                >
+                  <Icon size={14} /> {label}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

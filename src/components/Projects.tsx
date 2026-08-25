@@ -13,7 +13,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center text-3xl font-bold sm:text-4xl"
         >
-          Personal Projects
+          Things I've built
         </motion.h2>
 
         <div className="grid gap-10 md:grid-cols-2">
